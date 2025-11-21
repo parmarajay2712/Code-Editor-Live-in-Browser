@@ -1,0 +1,296 @@
+/* 
+  ============================================================
+  GLOBAL THEME VARIABLES
+  Centralized design tokens for colors, spacing, and radius.
+  Changing values here updates the entire UI consistently.
+  ============================================================
+*/
+:root {
+    --bg: #0f1221;
+    --body-bg: #0b0f1d;
+    --panel: #14182b;
+    --muted: #8b93a7;
+    --txt: #e9ecf1;
+    --brand: #7dd3fc;
+    --ok: #22c55e;
+    --warn: #eab308;
+    --err: #ef4444;
+    --radius: 18px;
+    --gap: 14px;
+}
+
+/* Removes default spacing and ensures consistent box model */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+/* 
+  Dark gradient background + primary font.
+  Provides a clean developer-friendly UI for the editor.
+*/
+body {
+    background: linear-gradient(180deg, var(--body-bg), var(--bg) 35%);
+    font-family: sans-serif;
+    color: var(--txt);
+}
+
+/* 
+  ================= HEADER SECTION =================
+  Slight gradient + border for a modern glass-like top bar.
+*/
+header {
+    padding: 20px;
+    background: linear-gradient(90deg, rgba(96, 165, 250, 0.15), rgba(125, 211, 252, 0.1));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Page layout wrapper */
+.container {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding: 15px;
+    justify-content: space-between;
+}
+
+/* Branding: logo + project title */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+}
+
+/* App logo block */
+.brand .logo {
+    inline-size: 36px;
+    block-size: 36px;
+    border-radius: 10px;
+    background: url("https://play-lh.googleusercontent.com/ynt7uKCJWwAnSSv0lOSsiGoBC6kpnBCc1bjEc_HrWZpTrxr8pJNz5STfSkBmLEvevHw") center/cover no-repeat;
+}
+
+/* Responsive title text */
+.title {
+    font-size: clamp(18px, 2vw, 22px);
+}
+
+/* 
+  ================= MAIN GRID LAYOUT =================
+  Left: Assignment panel
+  Center: Live editor
+  Right: Console output
+*/
+main {
+    max-width: 1516px;
+    padding: 18px;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: 280px 1fr 360px;
+    gap: var(--gap);
+}
+
+/* Mobile / tablet: stack all sections vertically */
+@media (max-width: 1100px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Reusable card container with soft borders + glass effect */
+.card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.panel {
+    padding: 16px;
+}
+
+h2,
+h3 {
+    margin: 12px;
+}
+
+/* Muted text for labels and helper info */
+.muted {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* 
+  Utility classes for flexible spacing and layout
+*/
+.stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* 
+  ================= BUTTON STYLES =================
+  Primary buttons use gradients; others use transparent variations.
+*/
+.btn {
+    font-weight: 700;
+    appearance: none;
+    border: none;
+    background: linear-gradient(180deg, var(--brand-2), var(--brand));
+    color: black;
+    background-color: #fff;
+    padding: 10px 15px;
+    border: 12px;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(96, 165, 250, 0.35);
+}
+
+/* Secondary (outline style) buttons */
+.secoundry {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: white;
+    box-shadow: none;
+}
+
+/* Run button (green action) */
+#runweb {
+    color: white;
+    background-color: rgb(24, 81, 24);
+}
+
+/* Warning variation for test run */
+#runtests {
+    color: white;
+    background-color: rgb(177, 177, 25);
+}
+
+/* Error / danger buttons */
+#btnnerr,
+#clearout {
+    color: white;
+    background-color: rgb(162, 13, 13);
+}
+
+/* 
+  ================= FORM / TEXT INPUTS =================
+*/
+.select,
+select,
+.text {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 10px 12px;
+    color: var(--txt);
+}
+
+textarea.text {
+    width: 100%;
+    min-height: 120px;
+}
+
+/* 
+  ================= EDITOR TABS =================
+*/
+.tabs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.tab {
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.03);
+    border: rgba(255, 255, 255, 0.14);
+}
+
+/* Active tab highlight */
+.tab.active {
+    background: linear-gradient(180deg, rgba(125, 211, 252, 0.18), rgba(96, 165, 250, 0.18));
+    color: #00FF00;
+}
+
+/* 
+  ================= ACE EDITOR WRAPPER =================
+*/
+.editor-wrap {
+    position: relative;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    overflow: hidden;
+    min-height: 280px;
+    background-color: #0b1020;
+}
+
+/* ACE editor itself */
+.editor {
+    inline-size: 100%;
+    block-size: 380px;
+}
+
+/* Live preview iframe */
+iframe.Preview {
+    inline-size: 100%;
+    block-size: 380px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    background-color: #fff;
+}
+
+/* Output console area */
+.out {
+    border-color: #0a0e1a;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    padding: 10px;
+    min-height: 160px;
+    overflow: auto;
+    white-space: pre-wrap;
+}
+
+/* Footer info */
+.footer {
+    opacity: 0.7;
+    font-size: 12px;
+    text-align: center;
+    padding: 12px;
+}
+
+/* Keyboard shortcut styling (ctrl + S, ctrl + enter) */
+.kbd {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "cascadia coda", monospace;
+    background-color: #0e1324;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 2px 6px;
+}
+
+/* Subtle labels list */
+.label {
+    font-size: 15px;
+    color: var(--muted);
+}

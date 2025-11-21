@@ -1,0 +1,12 @@
+{
+  // Disable built-in HTML validation to avoid duplicate-meta lint messages
+  "html.validate.enable": false
+}{
+    "cSpell.words": [
+        "btnnerr",
+        "ecaphtml",
+        "runtests",
+        "runweb",
+        "secoundry"
+    ]
+}

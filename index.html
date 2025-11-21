@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!-- 
+  HTML5 Document Declaration
+  This project provides a full in-browser code editor with live HTML/CSS/JS preview,
+  assignment instructions, testing support, and save/load functionality.
+-->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <!-- Ensures responsive layout on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Code Editor - Live in the browser</title>
+
+    <!-- External stylesheet for layout & theme -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- ========================= HEADER ========================= -->
+    <header>
+        <div class="container row">
+            <div class="brand">
+                <!-- Placeholder for brand/logo -->
+                <div class="logo"></div>
+
+                <!-- Title of the code editor -->
+                <div class="title">Code Editor - Live in the browser</div>
+            </div>
+
+            <!-- Save / Load buttons (using JSON export & import) -->
+            <div class="row">
+                <button class="btn secoundry" id="savebtn" title="Save work locally">
+                    <span>Save</span>
+                </button>
+
+                <button class="btn secoundry" id="loadbtn" title="Load saved work file">
+                    <span>Load</span>
+                </button>
+
+                <!-- Hidden file input for loading JSON -->
+                <input type="file" id="openfile" accept="application/json" hidden />
+            </div>
+        </div>
+    </header>
+
+    <!-- ========================= MAIN LAYOUT ========================= -->
+    <main>
+
+        <!-- ============ LEFT SIDEBAR: ASSIGNMENT + TEST CASES ============ -->
+        <aside class="card panel stack">
+            <h2>Task / Assignment</h2>
+
+            <!-- Instructor / user assignment description -->
+            <textarea id="Assignment" class="text" placeholder="Write the task description here..."></textarea>
+
+            <div class="stack">
+                <label for="testArea">Validation tests (JavaScript only - optional)</label>
+
+                <!-- JS test cases appended to executed code -->
+                <textarea class="text" id="testArea"
+                    placeholder="Write simple tests to append after the users' code to check the solution."></textarea>
+            </div>
+
+            <!-- Shortcut instructions -->
+            <div class="muted">
+                Tip: <span class="kbd">ctrl</span> + <span class="kbd">S</span> to save,
+                <span class="kbd">ctrl</span> + <span class="kbd">Enter</span> to run.
+            </div>
+        </aside>
+
+        <!-- ============ CENTER PANEL: HTML / CSS / JS EDITORS ============ -->
+        <section class="stack" id="web-only">
+            <div class="stack panel card" id="webeditots">
+
+                <!-- Top bar: title + Run + Open preview -->
+                <div class="row">
+                    <h2>HTML / CSS / Javascript</h2>
+
+                    <div class="row">
+                        <!-- Executes the current code into the iframe preview -->
+                        <button class="btn ok" id="runweb">Run</button>
+
+                        <!-- Opens the preview in a standalone tab -->
+                        <button class="btn secoundry" id="openPreview">
+                            Open Preview in new window.
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ================= TABS TO SWITCH EDITORS ================= -->
+                <div class="tabs" id="webtabs" role="tablist" aria-label="web editors">
+                    <button class="tab active" role="tab" aria-selected="true" tabindex="0" data-pane="html">
+                        HTML
+                    </button>
+
+                    <button class="tab" role="tab" aria-selected="false" tabindex="-1" data-pane="css">
+                        CSS
+                    </button>
+
+                    <button class="tab" role="tab" aria-selected="false" tabindex="-1" data-pane="javascript">
+                        Javascript
+                    </button>
+                </div>
+
+                <!-- ================= ACE EDITOR INSTANCES ================= -->
+                <div class="editor-wrap" data-pane="html">
+                    <!-- Ace Editor: HTML instance -->
+                    <div class="editor" id="ed_html"></div>
+                </div>
+
+                <div class="editor-wrap" data-pane="css" hidden>
+                    <!-- Ace Editor: CSS instance -->
+                    <div class="editor" id="ed_css"></div>
+                </div>
+
+                <div class="editor-wrap" data-pane="javascript" hidden>
+                    <!-- Ace Editor: JS instance -->
+                    <div class="editor" id="ed_Javascript"></div>
+                </div>
+
+                <!-- ================= LIVE PREVIEW FRAME ================= -->
+                <div class="stack">
+                    <h3>Preview</h3>
+
+                    <!-- Secure sandboxed iframe to run user code -->
+                    <iframe id="preview" class="Preview"
+                        sandbox="allow-scripts allow-same-origin allow-modals allow-forms"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ RIGHT SIDEBAR: OUTPUT CONSOLE ============ -->
+        <aside class="card panel stack">
+            <h2>Output</h2>
+
+            <!-- Console output (errors, logs, test results) -->
+            <div id="output" class="out" aria-live="polite"></div>
+
+            <div class="row">
+                <!-- Runs code + test suite -->
+                <button class="btn warn" id="runtests">Run With Tests</button>
+
+                <!-- Clears console output -->
+                <button class="btn err" id="clearout">Clear Log</button>
+            </div>
+
+            <h3>Notes</h3>
+            <ul class="muted">
+                <li class="label">Everything runs inside the browser in a sandbox.</li>
+                <li class="label">You can save your work as a JSON file and restore it anytime.</li>
+            </ul>
+        </aside>
+
+    </main>
+
+    <!-- Footer -->
+    <div class="footer">&copy; 2025 Parmar Ajay - All rights reserved.</div>
+
+    <!-- Ace Editor (CDN) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.3/ace.js"></script>
+
+    <!-- Main script -->
+    <script src="Script.js"></script>
+
+</body>
+
+</html>
