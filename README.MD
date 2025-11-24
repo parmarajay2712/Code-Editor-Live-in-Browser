@@ -1,4 +1,4 @@
-# 🔥 **Web Code Editor – Live HTML/CSS/JS Playground**
+# 🔥 **Code Editor – Live HTML/CSS/JS Playground**
 
 A fully interactive, browser‑based **HTML/CSS/JavaScript code editor** built with **Ace Editor**, featuring live preview, test runner, project export/import, console logs, and a clean dark UI inspired by professional developer tools.
 
